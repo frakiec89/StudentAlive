@@ -59,17 +59,19 @@
         /// <returns></returns>
         public string ChangeJob (Job job)
         {
+           Satiety -= 2;
            return  job.PretendJobs(this);
         }
         /// <summary>
         /// Сходить на  работу
         /// </summary>
-        public  void MoveWork ()
+        public  string MoveWork ()
         {
             Experience++;
             Mood -=10; 
             Satiety -=10;
             WorkDay++;
+            return "Вы сходили на работу";
         }
 
         /// <summary>
@@ -142,10 +144,11 @@
         /// <summary>
         /// Поспать  - настроение  поднимается но хочется есть
         /// </summary>
-        public void Sleep ()
+        public string Sleep ()
         {
             Mood += 5;
             Satiety -= 5;
+            return "Вы поспали. проверьте статус"; 
         }
 
         public string Relax (double cash)
