@@ -36,6 +36,14 @@
 
         public void Step (string command)
         {
+            string s = ".";
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(s);
+                s += ".";
+                Thread.Sleep (50);
+            }
+
             Console.Clear ();
             Console.WriteLine (GetCommand(command));
             switch (command)
