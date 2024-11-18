@@ -12,7 +12,12 @@
 
         public Student Student {  get; private set; }
 
-        int pointDay; 
+        int pointDay;
+        int pointRelax = 2;
+        private int pointEatUp = 1;
+        private int pointStudy = 8;
+        private int pointMoveWork = 10;
+        private int pointChangeJob =4;
 
         public Game (string name) 
         {
@@ -26,59 +31,68 @@
             if (Student.IsAlive()== false)
             {
                 Console.WriteLine(   Student.GetInfo ());
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.Write(";-( ");
+                    Thread.Sleep (100);
+                }
+                Console.WriteLine();
                 return false;   
             }
-
+            EndPrint(5);
             Console.WriteLine("что будем делать?");
+           
             Step(Console.ReadLine());
             return true;
         }
 
         public void Step (string command)
         {
-            string s = ".";
-            for (int i = 0; i < 10; i++)
-            {
-                Console.Write(s);
-                s += ".";
-                Thread.Sleep (50);
-            }
 
-            Console.Clear ();
-            Console.WriteLine (GetCommand(command));
+            Console.Clear();
+            Console.WriteLine(GetCommand(command));
             switch (command)
             {
                 case "1": CommandChangeJob(); break;
                 case "2": CommandMoveWork(); break;
                 case "3": CommandMoveBookkeeping(); break;
                 case "4": CommandStudy(); break;
-                case "5": CommandEatUp(); break;    
-                case "6": CommandRelax(); break; 
-                case "7": Console.WriteLine( Student.GetInfo ()); break;
-                case "8": 
+                case "5": CommandEatUp(); break;
+                case "6": CommandRelax(); break;
+                case "7": Console.WriteLine(Student.GetInfo()); break;
+                case "8":
                     Console.WriteLine(Student.Sleep());
                     Console.WriteLine("Новый день");
-                    pointDay = 24 ; break;
+                    pointDay = 24; break;
                 case "9": Console.Clear(); break;
                 case "10": PrintManual(); break;
-                    default : Console.WriteLine("не знакомая  команда"); break;
+                default: Console.WriteLine("не знакомая  команда"); break;
             }
+           
         }
 
-   
+        private static void EndPrint(int count )
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write(".");
+                Thread.Sleep(50);
+            }
+            Console.WriteLine();
+        }
 
         private void CommandRelax()
         {
-
-            if (IsPoint(2) == false) // todo 2 ed 
+            
+            if (IsPoint(pointRelax) == false) // todo 2 ed 
                 return;
 
-            Console.WriteLine("Вы в игровом клубе - сколько денег вы готовы потратить?");
+            Console.WriteLine("Вы в игровом клубе сколько денег вы готовы потратить?");
 
-            if (double.TryParse(Console.ReadLine(), out double d))
+            if (double.TryParse(Console.ReadLine(), out double cash))
             {
-                pointDay -= 2;
-                Console.WriteLine( Student.Relax(d));
+                pointDay -= pointRelax;
+                Console.WriteLine( Student.Relax(cash));
             }
             else
             {
@@ -89,15 +103,15 @@
 
         private void CommandEatUp()
         {
-            if (IsPoint(1) == false) // todo 1 ed 
+            if (IsPoint(pointEatUp) == false) // todo 1 ed 
                 return;
 
             Console.WriteLine("Вы в столовой - сколько денег вы готовы потратить?");
             
-            if(double.TryParse(Console.ReadLine(), out double d))
+            if(double.TryParse(Console.ReadLine(), out double cash))
             {
-                Console.WriteLine( Student.EatUp(d));
-                pointDay--;
+                Console.WriteLine( Student.EatUp(cash));
+                pointDay -=pointEatUp;
             }
             else
             {
@@ -111,10 +125,10 @@
         /// </summary>
         private void CommandStudy()
         {
-            if (IsPoint(8) == false) // todo 8 ed 
+            if (IsPoint(pointStudy) == false) // todo 8 ed 
                 return;
 
-            pointDay -= 8;
+            pointDay -= pointStudy;
             Console.WriteLine(Student.Study());
         }
 
@@ -138,10 +152,10 @@
                 return;
             }
 
-            if (IsPoint(10) == false) // todo 10 ed 
+            if (IsPoint(pointMoveWork) == false) // todo 10 ed 
                 return;
             
-            pointDay -= 10;
+            pointDay -= pointMoveWork;
             Console.WriteLine(Student.MoveWork());
             Console.WriteLine(Student.GetInfo ());
         }
@@ -151,7 +165,7 @@
         /// </summary>
         private void CommandChangeJob()
         {
-            if (IsPoint(4) == false) // todo 4 ed 
+            if (IsPoint(pointChangeJob) == false) // todo 4 ed 
                 return;
 
             Console.WriteLine("Список вакансий:");
@@ -166,7 +180,7 @@
             if (job != null)
             {
                 Console.WriteLine(Student.ChangeJob(job));
-                pointDay -= 4;
+                pointDay -= pointChangeJob;
             }
             else
                 Console.WriteLine("Нет такой вакансии");
@@ -214,7 +228,7 @@
                    "7 -Запросить статус\n" +
                    "8 -Пойти спать\n" +
                    "9 -Очистить консоль\n" +
-                   "10 -Мануал\n";
+                   "10 -Мануал";
 
         }
 
