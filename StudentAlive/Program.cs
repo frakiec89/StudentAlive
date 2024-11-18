@@ -2,7 +2,10 @@
 
 using StudentAlive;
 bool f = true;
-Game game = new Game("Ivan");
+
+Console.WriteLine("Начало  игры:");
+Console.WriteLine("Введите ваше имя:");
+Game game = new Game(Console.ReadLine());
 
 Console.WriteLine( game.GetCommand());
 while (f)

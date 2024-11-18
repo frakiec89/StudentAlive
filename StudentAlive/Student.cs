@@ -98,12 +98,12 @@
                 return "Не хватает денег (";
             }    
 
-            if (cash < 0)
+            if (cash <= 0)
                 return "Вы не поели";
             else if (cash <= 10)
             {
                 Satiety += 10;
-                Mood++;
+                Mood-=10; // вы поели абы чего .. так  и  повеситься можно  
             }
             else if (cash <= 50)
             {
@@ -159,7 +159,7 @@
                 return "Не хватает денег (";
             }
 
-            if (cash < 0)
+            if (cash <= 0)
                 return "error";
             else if (cash <= 10)
                 Mood+=10;
