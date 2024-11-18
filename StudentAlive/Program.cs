@@ -12,7 +12,12 @@ static void Start()
 
     Console.WriteLine("Начало  игры:");
     Console.WriteLine("Введите ваше имя:");
-    Game game = new Game(Console.ReadLine());
+
+    string name = Console.ReadLine(); // проверка на пустоту
+    if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+        return;
+
+    Game game = new Game(name);
 
     Console.WriteLine(game.GetCommand());
     while (f)

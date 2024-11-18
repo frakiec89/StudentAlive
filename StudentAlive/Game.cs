@@ -31,15 +31,11 @@
             if (Student.IsAlive()== false)
             {
                 Console.WriteLine(   Student.GetInfo ());
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.Write(";-( ");
-                    Thread.Sleep (100);
-                }
-                Console.WriteLine();
+                EndPrint(5, ";-(");
                 return false;   
             }
-            EndPrint(5);
+
+            EndPrint(5 , ".");
             Console.WriteLine("что будем делать?");
            
             Step(Console.ReadLine());
@@ -48,7 +44,6 @@
 
         public void Step (string command)
         {
-
             Console.Clear();
             Console.WriteLine(GetCommand(command));
             switch (command)
@@ -71,11 +66,11 @@
            
         }
 
-        private static void EndPrint(int count )
+        private static void EndPrint(int count, string varChar)
         {
             for (int i = 0; i < count; i++)
             {
-                Console.Write(".");
+                Console.Write(varChar);
                 Thread.Sleep(50);
             }
             Console.WriteLine();
