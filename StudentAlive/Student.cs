@@ -26,7 +26,7 @@
 
         public string Job { get; set; }
       
-        public int  WorkDay { get; set; }
+        public int  WorkDay { get; set; } // CountWorkDay
         /// <summary>
         /// Сытость
         /// </summary>
