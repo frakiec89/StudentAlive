@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿// track
 using StudentAlive;
 while (true)
 {
@@ -16,9 +15,8 @@ static void Start()
     string name = Console.ReadLine(); // проверка на пустоту
     if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
         return;
-
+    
     Game game = new Game(name);
-
     Console.WriteLine(game.GetCommand());
     while (f)
     {
@@ -29,7 +27,6 @@ static void Start()
             Console.ReadLine();
             return;
         }
-
         Console.WriteLine(game.GetCommand());
     }
 }

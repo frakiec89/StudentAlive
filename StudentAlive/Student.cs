@@ -1,5 +1,6 @@
 ﻿namespace StudentAlive
 {
+    // track
     public class Student
     {
         public string Name { get; set; }
@@ -38,18 +39,12 @@
 
         public  Student (string name )
         {
-            Name = name;
-            Job = "Без Работы";
-            Mood = 20;
-            Money = 500;
-            Satiety = 20;
+            throw new NotImplementedException ();
         }
 
         public bool IsAlive ()
         {
-            if (Satiety < 0 || Mood < 0) return false;
-            
-            return true;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -59,19 +54,14 @@
         /// <returns></returns>
         public string ChangeJob (Job job)
         {
-           Satiety -= 2;
-           return  job.PretendJobs(this);
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Сходить на  работу
         /// </summary>
         public  string MoveWork ()
         {
-            Experience++;
-            Mood -=10; 
-            Satiety -=10;
-            WorkDay++;
-            return "Вы сходили на работу";
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -80,9 +70,8 @@
         /// <param name="job"></param>
         /// <returns></returns>
         public string MoveBookkeeping(Job job)
-        {   if(IsJob==true)
-                return job.GetSalary(this);
-            return "Вы не работаете";
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -92,37 +81,7 @@
         /// <returns></returns>
         public string EatUp(double cash)
         {
-            if(cash > Money)
-            {
-                Mood--; 
-                return "Не хватает денег (";
-            }    
-
-            if (cash <= 0)
-                return "Вы не поели";
-            else if (cash <= 10)
-            {
-                Satiety += 10;
-                Mood-=10; // вы поели абы чего .. так  и  повеситься можно  
-            }
-            else if (cash <= 50)
-            {
-                Satiety += 20;
-                Mood+=5;
-            }
-            else if (cash <= 100)
-            {
-                Satiety += 30;
-                Mood += 30;
-            }
-            else
-            {
-                Satiety += 30;
-                Mood += 30 + cash / 50.0; 
-            }
-            Money-= cash;
-
-            return $"Вы покушали... Сытость: {Satiety}. настроение:{Mood}";
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -131,14 +90,7 @@
         /// <returns></returns>
         public string  Study ()
         {
-            Mood -= 10;
-            Satiety -= 10;
-
-            Random random = new Random();
-            int experience = random.Next(0, 10);
-
-            Experience += experience;
-            return $"Вы получили знаний на {experience} ед. опыта";
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -146,33 +98,12 @@
         /// </summary>
         public string Sleep ()
         {
-            Mood += 5;
-            Satiety -= 5;
-            return "Вы поспали. проверьте статус"; 
+            throw new NotImplementedException();
         }
 
         public string Relax (double cash)
         {
-            if (cash > Money)
-            {
-                Mood--;
-                return "Не хватает денег (";
-            }
-
-            if (cash <= 0)
-                return "error";
-            else if (cash <= 10)
-                Mood+=10;
-            else if (cash <= 50)
-                Mood += 50;
-            else if (cash <= 100)
-                Mood += 100;
-            else
-                Mood += 100 + cash / 50.0;
-            
-            Money -= cash;
-
-            return $"Вы хорошо провели время... Сытость: {Satiety}. настроение:{Mood}";
+            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿namespace StudentAlive
 {
+    
+    // track
     public class Game
     {
         private  Job[] Jobs = new Job[]
@@ -21,98 +23,54 @@
 
         public Game (string name) 
         {
-            pointDay = 14;
-            Student = new Student (name);
-            Console.WriteLine ("Поздравляем  - вы теперь  студент\n" + Student.GetInfo ());
+           throw new NotImplementedException ();
         }
 
+        /// <summary>
+        /// Старт игры 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public bool Run ()
         {
-            if (Student.IsAlive()== false)
-            {
-                Console.WriteLine(   Student.GetInfo ());
-                EndPrint(5, ";-(");
-                return false;   
-            }
-
-            EndPrint(5 , ".");
-            Console.WriteLine("что будем делать?");
-           
-            Step(Console.ReadLine());
-            return true;
+            throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// ход
+        /// </summary>
+        /// <param name="command"></param>
+        /// <exception cref="NotImplementedException"></exception>
         public void Step (string command)
         {
-            Console.Clear();
-            Console.WriteLine(GetCommand(command));
-            switch (command)
-            {
-                case "1": CommandChangeJob(); break;
-                case "2": CommandMoveWork(); break;
-                case "3": CommandMoveBookkeeping(); break;
-                case "4": CommandStudy(); break;
-                case "5": CommandEatUp(); break;
-                case "6": CommandRelax(); break;
-                case "7": Console.WriteLine(Student.GetInfo()); break;
-                case "8":
-                    Console.WriteLine(Student.Sleep());
-                    Console.WriteLine("Новый день");
-                    pointDay = 24; break;
-                case "9": Console.Clear(); break;
-                case "10": PrintManual(); break;
-                default: Console.WriteLine("не знакомая  команда"); break;
-            }
-           
+            throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Для красивого  вывода  точек
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="varChar"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private static void EndPrint(int count, string varChar)
         {
-            for (int i = 0; i < count; i++)
-            {
-                Console.Write(varChar);
-                Thread.Sleep(50);
-            }
-            Console.WriteLine();
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Отдых
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         private void CommandRelax()
         {
-            
-            if (IsPoint(pointRelax) == false) // todo 2 ed 
-                return;
-
-            Console.WriteLine("Вы в игровом клубе сколько денег вы готовы потратить?");
-
-            if (double.TryParse(Console.ReadLine(), out double cash))
-            {
-                pointDay -= pointRelax;
-                Console.WriteLine( Student.Relax(cash));
-            }
-            else
-            {
-                Console.WriteLine("error");
-                CommandRelax();
-            }
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Еда
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         private void CommandEatUp()
         {
-            if (IsPoint(pointEatUp) == false) // todo 1 ed 
-                return;
-
-            Console.WriteLine("Вы в столовой - сколько денег вы готовы потратить?");
-            
-            if(double.TryParse(Console.ReadLine(), out double cash))
-            {
-                Console.WriteLine( Student.EatUp(cash));
-                pointDay -=pointEatUp;
-            }
-            else
-            {
-                Console.WriteLine("error");
-                CommandEatUp ();
-            }
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -120,11 +78,7 @@
         /// </summary>
         private void CommandStudy()
         {
-            if (IsPoint(pointStudy) == false) // todo 8 ed 
-                return;
-
-            pointDay -= pointStudy;
-            Console.WriteLine(Student.Study());
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -132,7 +86,7 @@
         /// </summary>
         private void CommandMoveBookkeeping()
         {
-            Console.WriteLine(Student.MoveBookkeeping(GetJob(Student.Job)));
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -141,18 +95,7 @@
         /// <exception cref="NotImplementedException"></exception>
         private void CommandMoveWork()
         {
-            if(Student.Job == "Без Работы") // todo  спорная  проверка
-            {
-                Console.WriteLine("Вы не работаете");
-                return;
-            }
-
-            if (IsPoint(pointMoveWork) == false) // todo 10 ed 
-                return;
-            
-            pointDay -= pointMoveWork;
-            Console.WriteLine(Student.MoveWork());
-            Console.WriteLine(Student.GetInfo ());
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -160,25 +103,7 @@
         /// </summary>
         private void CommandChangeJob()
         {
-            if (IsPoint(pointChangeJob) == false) // todo 4 ed 
-                return;
-
-            Console.WriteLine("Список вакансий:");
-            foreach (Job j in Jobs)
-            {
-                Console.WriteLine (j.Name);
-            }
-
-            Console.WriteLine("Введите название должности на которую вы претендуете:");
-            string temp = Console.ReadLine();
-            Job job = GetJob(temp);
-            if (job != null)
-            {
-                Console.WriteLine(Student.ChangeJob(job));
-                pointDay -= pointChangeJob;
-            }
-            else
-                Console.WriteLine("Нет такой вакансии");
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -188,11 +113,7 @@
         /// <returns></returns>
         private bool IsPoint(int point)
         {
-            if (pointDay - point >= 0)
-                return true;
-
-            Console.WriteLine("Сегодня уже не успеете - попробуйте в другой день");
-            return false;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -203,15 +124,14 @@
         /// <exception cref="NotImplementedException"></exception>
         private Job GetJob(string? temp)
         {
-            foreach (Job j in Jobs)
-            {
-                if(j.Name == temp)
-                    return j; 
-            }
-
-            return null; // todo  возвращать null  не очень  хорошая практика
+            throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// список команд
+        /// </summary>
+        /// <returns></returns>
         public string GetCommand ()
         {
             return "1 -Устроиться\\сменить работу\n" +
@@ -224,27 +144,20 @@
                    "8 -Пойти спать\n" +
                    "9 -Очистить консоль\n" +
                    "10 -Мануал";
-
         }
 
-        private string GetCommand(string command)
+        /// <summary>
+        /// перегрузка
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        private string GetCommand(string index )
         {
-            int index = 0;
-
-            if(int.TryParse(command, out index))
-            {
-                index--;
-                string[] strings = GetCommand().Split('\n');
-
-                if (index >= 0 && index < strings.Length )
-                    return strings[index];
-                else
-                    return "Неизвестная команда";
-            }
-
-            return "Неизвестная команда";
-            
+            throw new NotImplementedException();
         }
+
+
         private void PrintManual()
         {
             string manual = "Игра в студента:\n" +
