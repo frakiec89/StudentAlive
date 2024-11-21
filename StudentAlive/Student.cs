@@ -1,4 +1,6 @@
-﻿namespace StudentAlive
+﻿using static System.Reflection.Metadata.BlobBuilder;
+
+namespace StudentAlive
 {
     public class Student
     {
@@ -36,6 +38,8 @@
         /// </summary>
         public double Mood { get; set; }
 
+        public List<Book> BooksStudent { get; set; }
+
         public  Student (string name )
         {
             Name = name;
@@ -43,6 +47,8 @@
             Mood = 20;
             Money = 500;
             Satiety = 20;
+
+            BooksStudent = new List<Book> ();
         }
 
         public bool IsAlive ()
@@ -80,8 +86,10 @@
         /// <param name="job"></param>
         /// <returns></returns>
         public string MoveBookkeeping(Job job)
-        {   if(IsJob==true)
+        {   
+            if(IsJob==true)
                 return job.GetSalary(this);
+
             return "Вы не работаете";
         }
 
@@ -120,8 +128,8 @@
                 Satiety += 30;
                 Mood += 30 + cash / 50.0; 
             }
-            Money-= cash;
 
+            Money-= cash;
             return $"Вы покушали... Сытость: {Satiety}. настроение:{Mood}";
         }
 
@@ -150,7 +158,6 @@
             Satiety -= 5;
             return "Вы поспали. проверьте статус"; 
         }
-
         public string Relax (double cash)
         {
             if (cash > Money)
@@ -193,6 +200,88 @@
                    $"|Сытость:{Satiety}, Настроение: {Mood},\n" +
                    $"|Работа: Должность: {Job}, Зарплата: {Salary}\n" +
                    $"---------------------------------";
+        }
+
+        /// <summary>
+        /// Читать книгу 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public string ReadeBook (string name )
+        {
+            if (IsBook(name) == false)
+                return "Книга не найдена (";
+
+            Book b = GetBook(name);
+            return  b.Read(this);
+        }
+
+        /// <summary>
+        /// поиск книги
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
+        public Book GetBook(string bookName)
+        {
+            foreach (Book item in BooksStudent)
+            {
+                if (item.Name == bookName)
+                    return item;
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
+        /// поиск книги
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
+        public bool IsBook (Book book)
+        {
+            foreach (Book item in BooksStudent)
+            {
+                if(item.Name == book.Name)
+                    return true ;
+            }
+
+            return false ;
+        }
+
+        public bool IsBook ()
+        {
+            if(BooksStudent.Count ==0)
+                return false ;
+
+            return true ;
+        }
+
+        public bool IsBook(string bookName)
+        {
+            foreach (Book item in BooksStudent)
+            {
+                if (item.Name == bookName)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public string ListBookStudent ()
+        {
+            string s = "Список книг в  вашей библиотеке:\n";
+
+            if(BooksStudent.Count == 0)
+            {
+                Mood--;
+                return "У вас пока нет  ни одной книги(";
+            }
+
+            foreach (var item in BooksStudent)
+                s += $"{item.Name}, прочитанно {item.ReadStatus}, Осталось прочитать = {item.ReadOstatok} ст.\n";
+            
+            return s;
         }
     }
 }

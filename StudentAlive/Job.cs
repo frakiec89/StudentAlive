@@ -11,8 +11,6 @@
         /// </summary>
         public  int DaySalary { get; internal set; }
 
-
-
         /// <summary>
         /// Претендвоать на  должность
         /// </summary>
@@ -52,10 +50,8 @@
                 student.Money += Salary;
                 student.Mood += 10;
             }
+         
             return $"Вы сходили в бугалтерию и получили зарплату {chek} р.";
-
         }
-
-
     }
 }

@@ -1,7 +1,11 @@
-﻿namespace StudentAlive
+﻿
+
+namespace StudentAlive
 {
     public class Game
     {
+        private BooksShop BooksShop;
+
         private  Job[] Jobs = new Job[]
         {
             new Job { Salary = 200, DaySalary = 2, MinExperience = 0, Name = "дворник" },
@@ -18,12 +22,14 @@
         private int pointStudy = 8;
         private int pointMoveWork = 10;
         private int pointChangeJob =4;
+        private int pointReadBook =1;
 
         public Game (string name) 
         {
             pointDay = 14;
             Student = new Student (name);
             Console.WriteLine ("Поздравляем  - вы теперь  студент\n" + Student.GetInfo ());
+            BooksShop = new BooksShop();
         }
 
         public bool Run ()
@@ -61,9 +67,39 @@
                     pointDay = 24; break;
                 case "9": Console.Clear(); break;
                 case "10": PrintManual(); break;
+                case "11": CommandBuyBook(); break;
+                case "12": CommandReadBook(); break;
                 default: Console.WriteLine("не знакомая  команда"); break;
             }
+        }
+
+        private void CommandReadBook()
+        {
+            Console.WriteLine("Читать  книгу ");
            
+            if (IsPoint(pointReadBook) == false) // todo 1 ed 
+                return;
+
+            Console.WriteLine(Student.ListBookStudent());
+
+            if(Student.IsBook()== true)
+            {
+                pointDay-= pointReadBook;
+                Console.WriteLine("какую книгу будем читать?");
+                string name = Console.ReadLine();
+                Book book = Student.GetBook(name);
+                Console.WriteLine(Student.ReadeBook(name));
+            }
+        }
+        
+        private void CommandBuyBook()
+        {
+            Console.WriteLine("Вы в магазине книг");
+           
+            Console.WriteLine(BooksShop.PrintInfo());
+            Console.WriteLine("Укажите название книги которую хотите купить");
+            string name = Console.ReadLine();
+            Console.WriteLine(BooksShop.Buy(Student, name));
         }
 
         private static void EndPrint(int count, string varChar)
@@ -78,7 +114,6 @@
 
         private void CommandRelax()
         {
-            
             if (IsPoint(pointRelax) == false) // todo 2 ed 
                 return;
 
@@ -200,7 +235,6 @@
         /// </summary>
         /// <param name="temp"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         private Job GetJob(string? temp)
         {
             foreach (Job j in Jobs)
@@ -223,8 +257,9 @@
                    "7 -Запросить статус\n" +
                    "8 -Пойти спать\n" +
                    "9 -Очистить консоль\n" +
-                   "10 -Мануал";
-
+                   "10 -Мануал\n" +
+                   "11 -Купить книгу\n" +
+                   "12 -Читать книгу";
         }
 
         private string GetCommand(string command)
@@ -243,8 +278,8 @@
             }
 
             return "Неизвестная команда";
-            
         }
+
         private void PrintManual()
         {
             string manual = "Игра в студента:\n" +
@@ -309,7 +344,6 @@
                               "девелопер джун: Зарплата: 1000 , Расчетный период: 30 , минимальный опыт: 1000 \n";
 
             Console.WriteLine(manual);
-
         }
     }
 }
