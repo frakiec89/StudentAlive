@@ -6,16 +6,22 @@
       <HashCode>AwAAAAAIQAgAACAQAEAAACAgAAAAAAQAYAAIAAhEAEI=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Student" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Jobs" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StudentAlive.Job">
-    <Position X="10.75" Y="1.75" Width="2.25" />
+    <Position X="11" Y="1" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAABACAAAAAAAAAAAAACAAQAAAAEAAAAAAAABAAAAAA=</HashCode>
       <FileName>Job.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StudentAlive.Student">
-    <Position X="7" Y="1.25" Width="2.25" />
+    <Position X="8" Y="2" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQAQCCAAIUKAQAAAAAQIBAQAAAACAEAAQAAAAAAAQAA=</HashCode>
       <FileName>Student.cs</FileName>
